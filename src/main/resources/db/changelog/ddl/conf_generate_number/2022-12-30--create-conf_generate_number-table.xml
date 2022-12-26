@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd">
+
+    <changeSet author="as.rezov" id="2022-12-30--01-create-conf_generate_number-table">
+        <createTable remarks="Тестовая сущность" schemaName="public" tableName="conf_generate_number">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="conf_generate_number_pk"/>
+            </column>
+            <column defaultValueNumeric="1" name="version" type="INT"
+                    remarks="Версия - служебное поле для работы приложение">
+                <constraints nullable="false"/>
+            </column>
+            <column name="field_name" type="VARCHAR" remarks="Маска">
+            </column>
+            <column name="mask" type="VARCHAR" remarks="Маска">
+            </column>
+            <column name="sequence_name" type="VARCHAR" remarks="Названия сиквенса">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
