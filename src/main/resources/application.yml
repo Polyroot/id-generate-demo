@@ -1,0 +1,27 @@
+server.port: 18080
+
+# Spring
+spring:
+  application:
+    name: "ID generator"
+  liquibase:
+    drop-first: true
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  datasource:
+    url: ${TEST_DB_URL:jdbc:postgresql://localhost:15432/test}
+    username: ${TEST_DB_USER:postgres}
+    password: ${TEST_DB_USER_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    open-in-view: false
+
+generated-value:
+  package-number:
+    seq: "package_number_seq"
+    mask: "CH%06d"
+

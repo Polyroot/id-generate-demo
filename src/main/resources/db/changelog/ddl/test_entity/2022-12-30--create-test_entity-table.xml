@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd">
+
+    <changeSet author="as.rezov" id="2022-12-30--01-create-test_entity-table">
+        <createTable remarks="Тестовая сущность" schemaName="public" tableName="test_entity">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="test_entity_pk"/>
+            </column>
+            <column defaultValueNumeric="1" name="version" type="INT"
+                    remarks="Версия - служебное поле для работы приложение">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_time" type="DATETIME" remarks="Дата и время создания">
+            </column>
+            <column name="package_number_one" type="VARCHAR(8)" remarks="Место 1">
+            </column>
+            <column name="package_number_two" type="VARCHAR(8)" remarks="Место 2">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="as.rezov" id="2022-12-30--01-create-package_number_one-seq">
+        <createSequence startValue="1"
+                        incrementBy="1"
+                        schemaName="public"
+                        sequenceName="package_number_one_seq"
+                        cycle="true"/>
+    </changeSet>
+
+    <changeSet author="as.rezov" id="2022-12-30--01-create-package_number_two-seq">
+        <createSequence startValue="1"
+                        incrementBy="1"
+                        schemaName="public"
+                        sequenceName="package_number_two_seq"
+                        cycle="true"/>
+    </changeSet>
+
+    <changeSet author="as.rezov" id="2022-12-30--01-create-generate_value-function">
+        <createProcedure>
+            CREATE
+            OR REPLACE FUNCTION generate_value() RETURNS TRIGGER AS
+                $$
+            BEGIN
+                    NEW.package_number_two
+            := 'CH' || to_char(nextval('package_number_two_seq'), 'fm000000');
+            return NEW;
+            END
+                $$
+            LANGUAGE 'plpgsql' VOLATILE;
+        </createProcedure>
+        <rollback>
+            DROP FUNCTION generate_value();
+        </rollback>
+    </changeSet>
+
+    <changeSet author="as.rezov" id="2022-12-30--01-create-generate_value-trigger">
+        <sql>
+            DROP TRIGGER IF EXISTS generate_value_trigger ON test_entity;
+            CREATE TRIGGER generate_value_trigger
+                BEFORE INSERT
+                ON test_entity
+                FOR EACH ROW EXECUTE PROCEDURE generate_value();
+        </sql>
+        <rollback>
+            DROP TRIGGER generate_value_trigger ON test_entity;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
