@@ -5,11 +5,5 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd">
 
-    <changeSet author="as.rezov" id="ddl">
-        <tagDatabase tag="1.0"/>
-    </changeSet>
-
-    <include file="db/changelog/ddl/test_entity/changelog-cumulative.xml"/>
-    <include file="db/changelog/ddl/conf_generate_number/changelog-cumulative.xml"/>
-
+    <include file="db/changelog/dml/conf_generate_number/2022-12-30--insert-to-conf_generate_number-table.xml"/>
 </databaseChangeLog>

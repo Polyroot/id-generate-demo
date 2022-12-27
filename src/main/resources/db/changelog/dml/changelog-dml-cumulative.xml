@@ -9,7 +9,6 @@
         <tagDatabase tag="1.0"/>
     </changeSet>
 
-    <include file="db/changelog/ddl/test_entity/changelog-cumulative.xml"/>
-    <include file="db/changelog/ddl/conf_generate_number/changelog-cumulative.xml"/>
+    <include file="db/changelog/dml/conf_generate_number/changelog-cumulative.xml"/>
 
 </databaseChangeLog>

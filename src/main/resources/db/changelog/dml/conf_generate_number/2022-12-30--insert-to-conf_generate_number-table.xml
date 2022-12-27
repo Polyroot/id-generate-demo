@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd">
+
+    <changeSet author="as.rezov" id="2022-12-30--01-insert-to-conf_generate_number-table">
+        <insert tableName="conf_generate_number">
+            <column name="field_name" value="package_number_one"/>
+            <column name="mask" value="CH%06d"/>
+            <column name="sequence_name" value="package_number_one_seq"/>
+        </insert>
+        <insert tableName="conf_generate_number">
+            <column name="field_name" value="package_number_three"/>
+            <column name="mask" value="CH%05d"/>
+            <column name="sequence_name" value="package_number_three_seq"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -22,7 +22,8 @@ public class TestController {
                 .body(new TestResponse(testEntity.getId(),
                         testEntity.getDateTime(),
                         testEntity.getPackageNumberOne(),
-                        testEntity.getPackageNumberTwo()));
+                        testEntity.getPackageNumberTwo(),
+                        testEntity.getPackageNumberThree()));
     }
 
 }

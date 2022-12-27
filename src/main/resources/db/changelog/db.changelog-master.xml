@@ -7,5 +7,6 @@
 
     <include file="classpath:db/changelog/initialization/changelog-init-cumulative.xml"/>
     <include file="classpath:db/changelog/ddl/changelog-ddl-cumulative.xml"/>
+    <include file="classpath:db/changelog/dml/changelog-dml-cumulative.xml"/>
 
 </databaseChangeLog>

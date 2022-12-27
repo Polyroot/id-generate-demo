@@ -22,6 +22,8 @@
             </column>
             <column name="package_number_two" type="VARCHAR(8)" remarks="Место 2">
             </column>
+            <column name="package_number_three" type="VARCHAR(8)" remarks="Место 3">
+            </column>
         </createTable>
     </changeSet>
 
@@ -38,6 +40,14 @@
                         incrementBy="1"
                         schemaName="public"
                         sequenceName="package_number_two_seq"
+                        cycle="true"/>
+    </changeSet>
+
+    <changeSet author="as.rezov" id="2022-12-30--01-create-package_number_three-seq">
+        <createSequence startValue="1"
+                        incrementBy="1"
+                        schemaName="public"
+                        sequenceName="package_number_three_seq"
                         cycle="true"/>
     </changeSet>
 

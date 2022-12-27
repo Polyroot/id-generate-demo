@@ -24,13 +24,17 @@ public class TestEntity {
     @Column(name = "date_time")
     private LocalDateTime dateTime;
 
-    @GeneratorType(type = PackageNumberGenerator.class, when = GenerationTime.INSERT)
+    @GeneratorType(type = PackageNumberOneGenerateValue.class, when = GenerationTime.INSERT)
     @Column(name = "package_number_one")
     private String packageNumberOne;
 
     @Generated(value = GenerationTime.INSERT)
     @Column(name = "package_number_two", insertable = false, updatable = false)
     private String packageNumberTwo;
+
+    @GeneratorType(type = PackageNumberThreeGenerateValue.class, when = GenerationTime.INSERT)
+    @Column(name = "package_number_three")
+    private String packageNumberThree;
 
     public TestEntity(LocalDateTime dateTime) {
         this.dateTime = dateTime;
